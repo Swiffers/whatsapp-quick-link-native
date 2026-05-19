@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WhatsApp Quick Link Native — Phone numbers on any page, one click from WhatsApp</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Chrome extension that turns phone numbers on any webpage into clickable WhatsApp links — only when the number is actually on WhatsApp.">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; margin: 0; color: #1d2129; background: #fafbfc; line-height: 1.55; }
+  .hero { background: linear-gradient(135deg, #128C7E 0%, #25D366 100%); color: white; padding: 60px 20px 50px; text-align: center; }
+  .hero img { width: 88px; height: 88px; border-radius: 18px; box-shadow: 0 8px 28px rgba(0,0,0,0.2); margin-bottom: 22px; }
+  .hero h1 { font-size: 38px; margin: 0 0 14px; font-weight: 700; letter-spacing: -0.5px; }
+  .hero p { font-size: 17px; opacity: 0.95; max-width: 580px; margin: 0 auto 26px; }
+  .cta { display: inline-block; background: white; color: #128C7E; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .cta.secondary { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.6); margin-left: 10px; }
+  .content { max-width: 720px; margin: 0 auto; padding: 50px 20px; }
+  h2 { color: #128C7E; margin-top: 36px; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 24px 0; }
+  .feature { background: white; border: 1px solid #e6e8ea; border-radius: 10px; padding: 18px; }
+  .feature strong { color: #128C7E; display: block; margin-bottom: 4px; }
+  footer { text-align: center; padding: 30px 20px; color: #666; font-size: 13px; border-top: 1px solid #e6e8ea; background: white; }
+  footer a { color: #128C7E; }
+  .screenshot { max-width: 100%; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.08); margin: 18px 0; border: 1px solid #e6e8ea; }
+  code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.95em; }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } .hero h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<div class="hero">
+  <img src="https://raw.githubusercontent.com/Swiffers/whatsapp-quick-link-native/main/icons/icon128.png" alt="">
+  <h1>WhatsApp Quick Link Native</h1>
+  <p>Phone numbers on any webpage become clickable WhatsApp links — only when the number is actually on WhatsApp. Native inline, no popup, no copy-paste.</p>
+  <a class="cta" href="https://github.com/Swiffers/whatsapp-quick-link-native">View on GitHub</a>
+  <a class="cta secondary" href="./privacy.html">Privacy Policy</a>
+</div>
+
+<div class="content">
+  <h2>How it works</h2>
+  <p>The extension scans every page you visit for phone-number-shaped text. For each number, it makes a single background request to <code>wa.me</code> to check whether the number is registered on WhatsApp. Valid numbers turn into clickable links right where they appear. Invalid numbers are left alone.</p>
+
+  <h2>Features</h2>
+  <div class="features">
+    <div class="feature"><strong>Pre-validated</strong>Every link you see is a number that's actually on WhatsApp.</div>
+    <div class="feature"><strong>Native inline</strong>Links appear in place — no popup, no extra clicks.</div>
+    <div class="feature"><strong>Privacy-first</strong>No accounts, no analytics, no servers. Validation cached locally for 30 days.</div>
+    <div class="feature"><strong>50+ countries</strong>Built-in country dial codes; infers country from the page's TLD and language.</div>
+  </div>
+
+  <h2>Privacy</h2>
+  <p>This extension makes no network requests except to <code>wa.me</code> for the number-validation check. We have no servers, no telemetry, and no analytics. See the full <a href="./privacy.html">privacy policy</a>.</p>
+
+  <h2>Source code</h2>
+  <p>Open source on <a href="https://github.com/Swiffers/whatsapp-quick-link-native">GitHub</a>. Issues and PRs welcome.</p>
+
+  <h2>Trademark notice</h2>
+  <p>This extension is not affiliated with, endorsed by, or sponsored by WhatsApp Inc., Meta Platforms, or any of their subsidiaries. "WhatsApp" is a trademark of WhatsApp LLC.</p>
+</div>
+
+<footer>
+  <a href="./privacy.html">Privacy Policy</a> · <a href="https://github.com/Swiffers/whatsapp-quick-link-native">GitHub</a> · <a href="mailto:hermes.bozec@gmail.com">Contact</a>
+</footer>
+</body>
+</html>

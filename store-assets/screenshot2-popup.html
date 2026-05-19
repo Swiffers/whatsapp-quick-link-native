@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; height: 100%; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+  body { background: linear-gradient(135deg, #d4f4dd 0%, #e8f5e9 50%, #f5f7fa 100%); display: flex; align-items: center; justify-content: center; }
+  .stage { display: flex; gap: 60px; align-items: center; max-width: 1180px; padding: 50px 80px; }
+  .text { flex: 1; }
+  h1 { font-size: 44px; margin: 0 0 18px; color: #128C7E; line-height: 1.1; letter-spacing: -0.5px; }
+  .sub { font-size: 18px; line-height: 1.55; color: #444; margin-bottom: 28px; }
+  ul { padding: 0; margin: 0; list-style: none; }
+  li { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; font-size: 16px; color: #333; line-height: 1.5; }
+  .check { color: #25D366; font-weight: 700; font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+  .popup-wrap { flex-shrink: 0; }
+  .popup {
+    width: 320px; background: white; border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.06);
+    padding: 22px; color: #222;
+  }
+  .popup h2 { font-size: 16px; margin: 0 0 16px; color: #128C7E; display: flex; align-items: center; gap: 10px; }
+  .popup h2 img { width: 22px; height: 22px; border-radius: 4px; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+  .row:last-of-type { border-bottom: 0; }
+  .toggle { width: 36px; height: 20px; background: #25D366; border-radius: 10px; position: relative; }
+  .toggle::after { content: ''; position: absolute; right: 2px; top: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+  .toggle.off { background: #ccc; }
+  .toggle.off::after { left: 2px; right: auto; }
+  .host { font-size: 11px; color: #888; margin: 8px 0 16px; }
+  .clear-btn { font-size: 12px; padding: 6px 12px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa; color: #555; }
+  .arrow { font-size: 60px; color: #25D366; opacity: 0.4; margin: 0 -10px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="text">
+    <h1>Every phone number on the web,<br>one click from WhatsApp.</h1>
+    <p class="sub">Native inline links — appearing right where the phone number is, only when the number is actually on WhatsApp.</p>
+    <ul>
+      <li><span class="check">✓</span><span>Scans phone numbers on every page automatically</span></li>
+      <li><span class="check">✓</span><span>Validates each number against WhatsApp before linking</span></li>
+      <li><span class="check">✓</span><span>30-day local cache — fast, no repeated checks</span></li>
+      <li><span class="check">✓</span><span>Zero analytics, zero accounts, zero data leaves your browser</span></li>
+      <li><span class="check">✓</span><span>Per-site disable toggle from the toolbar popup</span></li>
+    </ul>
+  </div>
+  <div class="popup-wrap">
+    <div class="popup">
+      <h2><img src="../icons/icon48.png" alt=""> WhatsApp Quick Link</h2>
+      <div class="row"><span>Enable everywhere</span><div class="toggle"></div></div>
+      <div class="row"><span>Enable on this site</span><div class="toggle"></div></div>
+      <div class="host">pagesjaunes.fr</div>
+      <div class="row" style="border:0"><button class="clear-btn">Clear cache</button><span style="font-size:11px;color:#128C7E">142 cached</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

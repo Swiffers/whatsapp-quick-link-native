@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WhatsApp Quick Link — Demo</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; background: white; color: #1d2129; }
+  .browser {
+    width: 1280px; height: 800px; background: white;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .wrap { flex: 1; display: flex; }
+  .layout { flex: 1; }
+  .pane { display: flex; flex-direction: column; align-items: stretch; }
+  .pane .label { align-self: flex-start; }
+  .chrome {
+    background: #ebedf0; padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid #d8dadc;
+  }
+  .dots { display: flex; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; }
+  .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+  .url { flex: 1; background: white; padding: 6px 14px; border-radius: 6px; font-size: 13px; color: #444; border: 1px solid #d8dadc; }
+  .extension-icon {
+    width: 24px; height: 24px; border-radius: 4px;
+  }
+  .layout { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pane { padding: 40px 50px; overflow: hidden; }
+  .pane.before { background: #fafbfc; border-right: 1px solid #e6e8ea; }
+  .pane.after { background: white; }
+  .label {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 4px; margin-bottom: 24px;
+  }
+  .label.before { background: #ffe3e3; color: #c0392b; }
+  .label.after { background: #d4f4dd; color: #128C7E; }
+  h2 { font-size: 22px; margin: 0 0 18px; color: #1d2129; }
+  .card {
+    background: white; border: 1px solid #e6e8ea; border-radius: 10px;
+    padding: 20px 22px; margin-bottom: 16px; font-size: 15px; line-height: 1.55;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .pane.before .card { background: #fdfdfd; }
+  .card-title { font-weight: 600; margin-bottom: 6px; color: #1d2129; }
+  .card-meta { color: #65676b; font-size: 13px; }
+  .phone { font-family: -apple-system, ui-monospace, monospace; }
+
+  /* Extension styles, copied from the actual extension's styles.css */
+  a.wa-quick-link {
+    color: #25D366; text-decoration: none;
+    border-bottom: 1px dotted #25D366; cursor: pointer; font-weight: 500;
+  }
+  svg.wa-quick-link-icon {
+    display: inline-block; width: 1em; height: 1em;
+    vertical-align: -0.15em; margin-left: 0.2em;
+    color: #25D366; fill: currentColor;
+  }
+
+  .headline {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.97); padding: 18px 36px; border-radius: 999px;
+    font-size: 18px; font-weight: 600; color: #128C7E;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    border: 1px solid #d4f4dd; z-index: 2;
+    display: none; /* enabled in second screenshot */
+  }
+  .wrap { position: relative; }
+</style>
+</head>
+<body>
+<div class="browser">
+  <div class="chrome">
+    <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+    <div class="url">pagesjaunes.fr/restaurants/paris-15</div>
+    <img class="extension-icon" src="../icons/icon48.png" alt="">
+  </div>
+  <div class="wrap">
+    <div class="layout">
+      <div class="pane before">
+        <span class="label before">Without the extension</span>
+        <h2>3 restaurants in Paris 15ᵉ</h2>
+        <div class="card">
+          <div class="card-title">Le Petit Bistro</div>
+          <div class="card-meta">12 rue de la Convention</div>
+          <div>Call us at <span class="phone">+33 6 12 34 56 78</span> for reservations.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Brasserie du Coin</div>
+          <div class="card-meta">5 avenue Émile Zola</div>
+          <div>Phone: <span class="phone">01 45 78 23 11</span> · Open until 23h</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Sushi Konbu</div>
+          <div class="card-meta">8 rue Lecourbe</div>
+          <div>Order via WhatsApp: <span class="phone">+33 7 88 99 00 11</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Café des Artistes</div>
+          <div class="card-meta">22 boulevard Pasteur</div>
+          <div>Booking: <span class="phone">+33 6 55 44 33 22</span> · Brunch weekends</div>
+        </div>
+      </div>
+
+      <div class="pane after">
+        <span class="label after">With WhatsApp Quick Link Native</span>
+        <h2>3 restaurants in Paris 15ᵉ</h2>
+        <div class="card">
+          <div class="card-title">Le Petit Bistro</div>
+          <div class="card-meta">12 rue de la Convention</div>
+          <div>Call us at <a class="wa-quick-link" href="https://wa.me/33612345678">+33 6 12 34 56 78<svg class="wa-quick-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28z"/></svg></a> for reservations.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Brasserie du Coin</div>
+          <div class="card-meta">5 avenue Émile Zola</div>
+          <div>Phone: <span class="phone">01 45 78 23 11</span> · Open until 23h <span style="color:#999;font-size:12px">(not on WhatsApp)</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Café des Artistes</div>
+          <div class="card-meta">22 boulevard Pasteur</div>
+          <div>Booking: <a class="wa-quick-link" href="https://wa.me/33655443322">+33 6 55 44 33 22<svg class="wa-quick-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23z"/></svg></a> · Brunch weekends</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Sushi Konbu</div>
+          <div class="card-meta">8 rue Lecourbe</div>
+          <div>Order via WhatsApp: <a class="wa-quick-link" href="https://wa.me/33788990011">+33 7 88 99 00 11<svg class="wa-quick-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28z"/></svg></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WhatsApp Quick Link Native — Privacy Policy</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.55; }
+  h1 { color: #128C7E; }
+  h2 { margin-top: 28px; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  .updated { color: #666; font-size: 13px; }
+  a { color: #128C7E; }
+</style>
+</head>
+<body>
+<p><a href="./">&larr; Back to home</a></p>
+<h1>WhatsApp Quick Link Native — Privacy Policy</h1>
+<p class="updated">Last updated: 2026-05-20</p>
+
+<p>This extension does <strong>not</strong> collect, transmit, or store any personal data about you on any server we control. We have no servers and no analytics.</p>
+
+<h2>What the extension does</h2>
+<ul>
+  <li>Scans the visible text of web pages you visit to find phone-number-shaped strings.</li>
+  <li>For each candidate number, sends a single HTTP <code>GET</code> request to <code>https://wa.me/&lt;number&gt;</code> (operated by WhatsApp/Meta) to determine whether the number is registered with WhatsApp.</li>
+  <li>If the number is valid, replaces the on-page text with a clickable <code>wa.me</code> link.</li>
+  <li>Caches the validation result locally in your browser (via <code>chrome.storage.local</code>) for up to 30 days, so the same number is not re-checked repeatedly.</li>
+</ul>
+
+<h2>What the extension does not do</h2>
+<ul>
+  <li>It does not send any data to servers operated by the extension author.</li>
+  <li>It does not include analytics, telemetry, error reporting, or tracking SDKs.</li>
+  <li>It does not read, transmit, or store any content from web pages other than the phone numbers themselves.</li>
+  <li>It does not access your WhatsApp account, contacts, chats, or any authenticated state.</li>
+  <li>It does not sell, share, or transfer data to third parties.</li>
+</ul>
+
+<h2>Permissions explained</h2>
+<ul>
+  <li><strong>storage</strong> — local cache of phone-validation results and your on/off + per-site preferences.</li>
+  <li><strong>host_permissions</strong> for <code>wa.me</code> and <code>api.whatsapp.com</code> — making the validation HTTP requests.</li>
+  <li><strong>Content scripts on all sites</strong> — phone numbers can appear on any website, so the scanner needs to run on the pages you visit.</li>
+</ul>
+
+<h2>Third parties</h2>
+<p>Validation requests are made to <code>wa.me</code>, operated by WhatsApp LLC / Meta Platforms. Those requests are subject to <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp's privacy policy</a>. We do not control what WhatsApp logs about these requests; the requests originate from your browser's IP address and contain no identifying information beyond what any HTTP client would send.</p>
+
+<h2>Changes</h2>
+<p>This policy may be updated. The "Last updated" date above will change accordingly. Material changes will be reflected in the extension's release notes.</p>
+
+<h2>Contact</h2>
+<p>Questions: <a href="mailto:hermes.bozec@gmail.com">hermes.bozec@gmail.com</a></p>
+</body>
+</html>
