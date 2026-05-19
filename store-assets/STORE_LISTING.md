@@ -41,7 +41,7 @@ PRIVACY
 • No accounts, no signup, no telemetry, no analytics.
 • The only network requests we make are to wa.me (operated by WhatsApp/Meta), to validate numbers.
 • Validation results are cached locally in your browser for 30 days.
-• Full privacy policy: [insert your hosted privacy-policy.html URL]
+• Full privacy policy: https://swiffers.github.io/whatsapp-quick-link-native/privacy.html
 
 GOOD FOR
 • Real estate listings, restaurant pages, classifieds, contact-us pages.
@@ -121,6 +121,6 @@ Detect phone numbers on web pages and turn the ones that are registered on Whats
 ---
 
 ## Support / homepage URLs
-- Homepage URL: (your GitHub repo or a landing page — required-ish)
+- Homepage URL: https://swiffers.github.io/whatsapp-quick-link-native/
 - Support email: hermes.bozec@gmail.com
-- Privacy policy URL: (your hosted privacy-policy.html URL — REQUIRED)
+- Privacy policy URL: https://swiffers.github.io/whatsapp-quick-link-native/privacy.html
