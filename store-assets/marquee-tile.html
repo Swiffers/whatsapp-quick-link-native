@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body {
+    width: 1400px; height: 560px;
+    background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+    color: white; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px; box-sizing: border-box;
+  }
+  .stage { display: flex; align-items: center; gap: 70px; max-width: 1200px; }
+  .logo { width: 200px; height: 200px; border-radius: 38px; box-shadow: 0 16px 48px rgba(0,0,0,0.25); flex-shrink: 0; }
+  .text { flex: 1; }
+  h1 { font-size: 52px; margin: 0 0 18px; font-weight: 700; letter-spacing: -1px; line-height: 1.05; }
+  p { font-size: 22px; margin: 0 0 22px; opacity: 0.95; line-height: 1.4; max-width: 680px; }
+  .badges { display: flex; gap: 16px; flex-wrap: wrap; }
+  .badge { background: rgba(255,255,255,0.18); padding: 8px 16px; border-radius: 999px; font-size: 15px; font-weight: 500; backdrop-filter: blur(4px); }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <img class="logo" src="../icons/icon128.png" alt="">
+    <div class="text">
+      <h1>Every phone number,<br>one click from WhatsApp.</h1>
+      <p>Native inline links on every page — only when the number is actually on WhatsApp.</p>
+      <div class="badges">
+        <div class="badge">✓ Pre-validated</div>
+        <div class="badge">✓ Privacy-first</div>
+        <div class="badge">✓ 50+ countries</div>
+        <div class="badge">✓ Zero analytics</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,45 +1,40 @@
 # WhatsApp Quick Link Native
 
-Inline-replaces phone numbers on any webpage with clickable `wa.me` links — only if the number is actually on WhatsApp.
+Chrome extension. Detects phone numbers on any webpage and replaces them inline with clickable `wa.me` links — no popup, no copy-paste.
 
 ## Install (unpacked)
 
 1. Open `chrome://extensions`
 2. Toggle **Developer mode** (top right)
 3. Click **Load unpacked**
-4. Select this `whatsapp_link_opener/` folder
-5. Visit any page with phone numbers — valid WhatsApp numbers will turn green with a small WA icon
+4. Select this folder
 
 ## How it works
 
-- `content.js` walks the DOM, finds phone-number-shaped text, normalizes to E.164 (using country inferred from TLD / `<html lang>` / `navigator.language`)
-- For each candidate, sends a message to the background service worker
-- `background.js` fetches `https://wa.me/<number>` and looks for "invalid number" markers in the HTML response, caches result in `chrome.storage.local` for 30 days
-- Requests are queued with a 250ms gap to avoid rate-limiting from wa.me
-- If the check is inconclusive (network error, ambiguous response), the link is rendered anyway (optimistic fallback)
+- `content.js` walks each page's text, applies the regex + country rules in `phone-parser.js`, and rewrites valid phone-number text into `<a href="https://wa.me/...">` links with an inline WhatsApp icon
+- `country-data.js` holds dial codes, trunk prefixes, and national-number length rules for ~50 countries
+- `background.js` is a minimal service worker that holds preferences only — the extension makes no network requests of its own
+- Default country is inferred from page TLD → `<html lang>` → `navigator.language`
 
-## Verifying the wa.me marker logic
+## Why no WhatsApp validation
 
-The validity-detection heuristic in `background.js` (`invalidMarkers` / `validMarkers`) is a best guess based on what wa.me currently serves. **Test it once on install**:
+Earlier versions tried to verify each number against `wa.me` before linking. **This is no longer possible** without WhatsApp credentials:
 
-1. Pick a number you know is on WhatsApp (e.g. your own).
-2. Pick a clearly bogus number (e.g. `+1 555 000 0000`).
-3. Open the extension's service-worker DevTools (`chrome://extensions` → "Inspect views: service worker"), then in console:
-   ```js
-   fetch('https://wa.me/15550000000').then(r => r.text()).then(t => console.log(t.length, t.includes('invalid')))
-   ```
-4. If the markers no longer differentiate, update `invalidMarkers`/`validMarkers` in `background.js`.
+- `wa.me` serves identical HTML for valid and invalid numbers (the validity check runs in client-side JS that we can't execute from a service worker)
+- `wa.me` returns `x-frame-options: DENY`, so an offscreen document can't load it either
+- Meta deprecated the `/contacts` endpoint of the WhatsApp Business API
+- Reverse-engineering the internal XHR is brittle, against ToS, and risks IP-level blocking
 
-WhatsApp changes their pages occasionally — this is the maintenance hotspot.
+Since reliable validation is impossible, the extension now focuses on **near-zero-false-positive parsing**: digit blobs without `+`, separators, or phone-context words are rejected; US/CA numbers must follow NANP area-code rules (2-9); etc. See `tests/parser-tests.js` for the full behavior.
+
+## Running tests
+
+```bash
+node tests/parser-tests.js
+```
 
 ## Settings (popup)
 
 - **Enable everywhere** — global on/off
 - **Enable on this site** — per-host toggle
-- **Clear cache** — wipes the 30-day validation cache
-
-## Known limitations
-
-- Phone parsing uses a built-in country dial-code table for ~50 countries. Bare local numbers from unlisted countries get the `default-from-TLD` treatment; if that's wrong, numbers won't match.
-- wa.me is rate-limited per IP. The 250ms gap + 30-day cache keeps load light, but heavy use on number-dense pages may still hit limits.
-- This relies on scraping wa.me, which is against WhatsApp's ToS for automated use. Don't ship to the Chrome Web Store as a paid product without considering the risk.
+- **Clear cache** — wipes any legacy preferences from previous versions

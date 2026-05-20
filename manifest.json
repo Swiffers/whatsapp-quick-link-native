@@ -1,13 +1,9 @@
 {
   "manifest_version": 3,
   "name": "WhatsApp Quick Link Native",
-  "version": "0.2.0",
-  "description": "Turns phone numbers on any webpage into clickable WhatsApp links — only if the number is actually on WhatsApp.",
+  "version": "0.4.0",
+  "description": "Turns phone numbers on any webpage into clickable WhatsApp (wa.me) links, inline where they appear.",
   "permissions": ["storage"],
-  "host_permissions": [
-    "https://wa.me/*",
-    "https://api.whatsapp.com/*"
-  ],
   "background": {
     "service_worker": "background.js"
   },
